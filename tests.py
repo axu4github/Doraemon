@@ -53,6 +53,36 @@ class TestDoraemon(unittest.TestCase):
         self.assertTrue(
             len(Doraemon.get_files_by_suffix(self.resources, ".TXT")) > 0)
 
+    def test_put_file_contents_str(self):
+        s, fpath = "123", os.path.join(self.resources, "foo.bar")
+
+        self.assertTrue(not os.path.isfile(fpath))
+        self.assertTrue(Doraemon.put_file_contents(fpath, s))
+        self.assertTrue(os.path.isfile(fpath))
+        self.assertEqual(1, len(Doraemon.get_file_contents(fpath)))
+        self.assertEqual(s, Doraemon.get_file_contents(fpath)[0])
+
+        if os.path.isfile(fpath):
+            os.remove(fpath)
+
+        self.assertTrue(not os.path.isfile(fpath))
+
+    def test_put_file_contents_list(self):
+        _l, fpath = range(0, 10), os.path.join(self.resources, "foo.bar")
+
+        self.assertTrue(not os.path.isfile(fpath))
+        self.assertTrue(Doraemon.put_file_contents(fpath, _l))
+        self.assertTrue(os.path.isfile(fpath))
+        self.assertEqual(10, len(Doraemon.get_file_contents(fpath)))
+        self.assertEqual(
+            map(lambda num: str(num), _l),
+            Doraemon.get_file_contents(fpath))
+
+        if os.path.isfile(fpath):
+            os.remove(fpath)
+
+        self.assertTrue(not os.path.isfile(fpath))
+
 
 if __name__ == "__main__":
     unittest.main()
