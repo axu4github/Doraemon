@@ -31,6 +31,17 @@ class TestDoraemon(unittest.TestCase):
         fpath = os.path.join(self.resources, "none_contents_file.txt")
         self.assertEqual(0, len(Doraemon.get_file_contents(fpath)))
 
+    def test_get_files(self):
+        files = Doraemon.get_files(self.resources)
+        self.assertTrue(
+            os.path.join(self.resources, "d", "e", "2.txt") in files)
+
+    def test_get_file_filter(self):
+        self.assertEqual(
+            0, len(Doraemon.get_files(
+                self.resources,
+                file_filter=lambda fpath: "foobar" == fpath.split(".")[-1])))
+
 
 if __name__ == "__main__":
     unittest.main()
