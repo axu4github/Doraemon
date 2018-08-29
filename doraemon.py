@@ -1,7 +1,7 @@
 # coding=utf-8
 
 
-class XUtilities(object):
+class Doraemon(object):
     """Python 工具集"""
 
     @staticmethod
