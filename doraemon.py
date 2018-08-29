@@ -7,13 +7,22 @@ class Doraemon(object):
     """Python 工具集"""
 
     @staticmethod
+    def get_files_by_suffix(_dir, suffix=None):
+        file_filter = None
+        if suffix is not None:
+            file_filter = lambda fpath: suffix == fpath.split(".")[-1]
+
+        return Doraemon.get_files(_dir, file_filter=file_filter)
+
+    @staticmethod
     def get_files(_dir, file_filter=None):
         match_files = []
         for root, dirs, files in os.walk(_dir):
             if file_filter is not None:
                 files = filter(file_filter, files)
 
-            match_files = [os.path.join(root, fname) for fname in files]
+            for fname in files:
+                match_files.append(os.path.join(root, fname))
 
         return match_files
 

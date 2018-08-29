@@ -42,6 +42,10 @@ class TestDoraemon(unittest.TestCase):
                 self.resources,
                 file_filter=lambda fpath: "foobar" == fpath.split(".")[-1])))
 
+    def test_get_files_by_suffix(self):
+        self.assertEqual(
+            0, len(Doraemon.get_files_by_suffix(self.resources, "foobar")))
+
 
 if __name__ == "__main__":
     unittest.main()
