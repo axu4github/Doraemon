@@ -10,8 +10,7 @@ class Doraemon(object):
     def get_files_by_suffix(_dir, suffix=None):
         file_filter = None
         if suffix is not None:
-            file_filter = lambda fpath: suffix.lower(
-            ) == os.path.splitext(fpath)[-1].lower()
+            file_filter = lambda fpath: suffix.lower() == os.path.splitext(fpath)[-1].lower()
 
         return Doraemon.get_files(_dir, file_filter=file_filter)
 
