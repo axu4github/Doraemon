@@ -15,6 +15,9 @@ class TestPython(unittest.TestCase):
         except Exception as e:
             self.assertTrue("need string or buffer" in str(e))
 
+    def test_path_splitext(self):
+        self.assertEqual(".txt", os.path.splitext("/1/2/3/4/5.txt")[-1])
+
 
 class TestDoraemon(unittest.TestCase):
     """ Doraemon 单元测试 """
@@ -40,15 +43,15 @@ class TestDoraemon(unittest.TestCase):
         self.assertEqual(
             0, len(Doraemon.get_files(
                 self.resources,
-                file_filter=lambda fpath: "foobar" == fpath.split(".")[-1])))
+                file_filter=lambda fpath: ".foobar" == fpath.split(".")[-1])))
 
     def test_get_files_by_suffix(self):
         self.assertEqual(
-            0, len(Doraemon.get_files_by_suffix(self.resources, "foobar")))
+            0, len(Doraemon.get_files_by_suffix(self.resources, ".foobar")))
 
     def test_get_files_by_suffix_lower(self):
         self.assertTrue(
-            len(Doraemon.get_files_by_suffix(self.resources, "TXT")) > 0)
+            len(Doraemon.get_files_by_suffix(self.resources, ".TXT")) > 0)
 
 
 if __name__ == "__main__":
