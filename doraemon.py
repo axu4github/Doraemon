@@ -28,10 +28,14 @@ class Doraemon(object):
         return match_files
 
     @staticmethod
-    def get_file_contents(fpath):
+    def get_file_contents(fpath, in_charset=None, out_charset=None):
         contents = []
         with open(fpath, "r") as f:
-            contents = [content.strip() for content in f.readlines()]
+            for content in f.readlines():
+                if in_charset is not None and out_charset is not None:
+                    content = content.decode(in_charset).encode(out_charset)
+
+                contents.append(content.strip())
 
         return contents
 
