@@ -46,6 +46,10 @@ class TestDoraemon(unittest.TestCase):
         self.assertEqual(
             0, len(Doraemon.get_files_by_suffix(self.resources, "foobar")))
 
+    def test_get_files_by_suffix_lower(self):
+        self.assertTrue(
+            len(Doraemon.get_files_by_suffix(self.resources, "TXT")) > 0)
+
 
 if __name__ == "__main__":
     unittest.main()
