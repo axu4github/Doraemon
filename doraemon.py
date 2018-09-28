@@ -20,12 +20,15 @@ class Doraemon(object):
     @staticmethod
     def get_files(_dir, file_filter=None):
         match_files = []
-        for root, dirs, files in os.walk(_dir):
-            if file_filter is not None:
-                files = filter(file_filter, files)
+        if os.path.isfile(_dir):
+            match_files.append(_dir)
+        else:
+            for root, dirs, files in os.walk(_dir):
+                if file_filter is not None:
+                    files = filter(file_filter, files)
 
-            for fname in files:
-                match_files.append(os.path.join(root, fname))
+                for fname in files:
+                    match_files.append(os.path.join(root, fname))
 
         return match_files
 

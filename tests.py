@@ -39,6 +39,11 @@ class TestDoraemon(unittest.TestCase):
         self.assertTrue(
             os.path.join(self.resources, "d", "e", "2.txt") in files)
 
+    def test_get_file_by_get_files(self):
+        filepath = os.path.join(self.resources, "none_contents_file.txt")
+        files = Doraemon.get_files(filepath)
+        self.assertEqual(files, [filepath])
+
     def test_get_file_filter(self):
         self.assertEqual(
             0, len(Doraemon.get_files(
