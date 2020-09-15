@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import os
+import pandas as pd
 
 
 class Doraemon(object):
@@ -58,3 +59,13 @@ class Doraemon(object):
                 f.write(contents)
 
         return True
+
+    @staticmethod
+    def get_excel_contents(fpath, *args, **kwargs):
+        """ 获取Excel文件内容 """
+        return pd.read_excel(fpath, *args, **kwargs)
+
+    @staticmethod
+    def put_excel_contents(fpath, contents, *args, **args):
+        """ 写入Excel文件内容 """
+        return pd.DataFrame(contents).to_excel(fpath, *args, **kwargs)
