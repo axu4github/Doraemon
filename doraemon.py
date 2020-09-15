@@ -8,6 +8,7 @@ class Doraemon(object):
 
     @staticmethod
     def get_files_by_suffix(_dir, suffix=None):
+        """  """
         file_filter = None
         if suffix is not None:
             def suffix_filter_fn(fpath):
@@ -19,6 +20,7 @@ class Doraemon(object):
 
     @staticmethod
     def get_files(_dir, file_filter=None):
+        """ 获取文件 """
         match_files = []
         if os.path.isfile(_dir):
             match_files.append(_dir)
@@ -33,12 +35,13 @@ class Doraemon(object):
         return match_files
 
     @staticmethod
-    def get_file_contents(fpath, in_charset=None, out_charset=None):
+    def get_file_contents(fpath, in_charset=None):
+        """ 文件读到数组 """
         contents = []
         with open(fpath, "r") as f:
             for content in f.readlines():
-                if in_charset is not None and out_charset is not None:
-                    content = content.decode(in_charset).encode(out_charset)
+                if in_charset is not None:
+                    content = content.decode(in_charset)
 
                 contents.append(content.strip())
 
@@ -46,6 +49,7 @@ class Doraemon(object):
 
     @staticmethod
     def put_file_contents(fpath, contents):
+        """ 数组写到文件 """
         with open(fpath, "w") as f:
             if isinstance(contents, list):
                 for content in contents:
