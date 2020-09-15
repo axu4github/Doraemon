@@ -8,7 +8,7 @@ class Doraemon(object):
 
     @staticmethod
     def get_files_by_suffix(_dir, suffix=None):
-        """  """
+        """ 获取指定后缀的文件 """
         file_filter = None
         if suffix is not None:
             def suffix_filter_fn(fpath):
