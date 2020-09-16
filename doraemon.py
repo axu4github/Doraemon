@@ -66,6 +66,6 @@ class Doraemon(object):
         return pd.read_excel(fpath, *args, **kwargs)
 
     @staticmethod
-    def put_excel_contents(fpath, contents, *args, **args):
+    def put_excel_contents(fpath, contents, *args, **kwargs):
         """ 写入Excel文件内容 """
         return pd.DataFrame(contents).to_excel(fpath, *args, **kwargs)
