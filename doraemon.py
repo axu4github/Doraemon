@@ -2,6 +2,8 @@
 
 import os
 import pandas as pd
+import xml.etree.ElementTree as ET
+import xmltodict
 
 
 class Doraemon(object):
@@ -69,3 +71,11 @@ class Doraemon(object):
     def put_excel_contents(fpath, contents, *args, **kwargs):
         """ 写入Excel文件内容 """
         return pd.DataFrame(contents).to_excel(fpath, *args, **kwargs)
+
+    @staticmethod
+    def get_xml_contents(fpath, in_charset='utf-8'):
+        """ 获取XML文件内容 """
+        xml_data = ET.parse(fpath).getroot()
+        xml_str = ET.tostring(xml_data, encoding=in_charset, method='xml')
+        data_dict = xmltodict.parse(xml_str)
+        return data_dict
