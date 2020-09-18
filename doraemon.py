@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import re
 import os
 import pandas as pd
 import xml.etree.ElementTree as ET
