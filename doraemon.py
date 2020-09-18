@@ -79,3 +79,13 @@ class Doraemon(object):
         xml_str = ET.tostring(xml_data, encoding=in_charset, method='xml')
         data_dict = xmltodict.parse(xml_str)
         return data_dict
+
+    @staticmethod
+    def hit(parttern, _str):
+        """
+        根据单个规则验证是否命中
+
+        :param parttern 命中规则
+        :param _str 需要验证的内容
+        """
+        return re.search(parttern, _str)
